@@ -37,6 +37,12 @@ import EVPopulationGrowth from "./EVPopulationGrowth";
 import TopCitiesChart from "./TopCitiesChart";
 import EVTypeDistribution from "./EVTypeDistribution";
 import TopManufacturersChart from "./TopManufacturersChart";
+import ElectricVehicleChart from "./ElectricVehicleChart";
+import ElectricVehicleFunnelChart from "./ElectricVehicleChart";
+import FunnelChart from "./FunnelChart";
+import MixedChart from "./MixedChart";
+import RangeAreaChart from "./RangeAreaChart";
+import CandlestickChart from "./CandlestickChart";
 
 const avatarSX = {
   width: 36,
@@ -71,6 +77,30 @@ const status = [
 const DashboardDefault = () => {
   const [value, setValue] = useState("today");
   const [slot, setSlot] = useState("week");
+
+  const transactions = [
+    {
+      id: "002434",
+      time: "Today, 2:00 AM",
+      amount: "+ $1,430",
+      percentage: "78%",
+      color: "success",
+    },
+    {
+      id: "984947",
+      time: "5 August, 1:45 PM",
+      amount: "+ $302",
+      percentage: "8%",
+      color: "primary",
+    },
+    {
+      id: "988784",
+      time: "7 hours ago",
+      amount: "+ $682",
+      percentage: "16%",
+      color: "error",
+    },
+  ];
 
   return (
     <Grid container rowSpacing={4.5} columnSpacing={2.75}>
@@ -131,7 +161,6 @@ const DashboardDefault = () => {
         </Grid>
         <MainCard content={false} sx={{ mt: 1.5 }}>
           <Box sx={{ pt: 1, pr: 2 }}>
-            {/* <IncomeAreaChart slot={slot} /> */}
             <EVPopulationGrowth />
           </Box>
         </MainCard>
@@ -146,8 +175,6 @@ const DashboardDefault = () => {
           <Grid item />
         </Grid>
         <MainCard sx={{ mt: 2 }} content={false}>
-          {/* <MonthlyBarChart /> */}
-          {/* <TopCitiesChart /> */}
           <EVTypeDistribution />
         </MainCard>
       </Grid>
@@ -174,12 +201,40 @@ const DashboardDefault = () => {
           <Grid item />
         </Grid>
         <MainCard sx={{ mt: 2 }} content={false}>
-          {/* <ReportAreaChart /> */}
           <TopCitiesChart />
+          <MixedChart />
         </MainCard>
       </Grid>
 
       {/* row 4 */}
+      <Grid item xs={12} md={7} lg={6}>
+        <Grid container alignItems="center" justifyContent="space-between">
+          <Grid item>
+            <Typography variant="h5">Electric Vehicle Population</Typography>
+          </Grid>
+          <Grid item />
+        </Grid>
+        <MainCard sx={{ mt: 2 }} content={false}>
+          <RangeAreaChart />
+        </MainCard>
+      </Grid>
+      <Grid item xs={12} md={5} lg={6}>
+        <Grid container alignItems="center" justifyContent="space-between">
+          <Grid item>
+            <Typography variant="h5">
+              Top 10 Cities with the Highest Number of EVs
+            </Typography>
+          </Grid>
+          <Grid item />
+        </Grid>
+        <MainCard sx={{ mt: 2 }} content={false}>
+          {/* <ReportAreaChart /> */}
+          {/* <TopCitiesChart /> */}
+          <CandlestickChart />
+        </MainCard>
+      </Grid>
+
+      {/* row 5 */}
       <Grid item xs={12} md={7} lg={8}>
         <MainCard sx={{ mt: 1.75 }}>
           {/* <SalesColumnChart /> */}
@@ -187,6 +242,7 @@ const DashboardDefault = () => {
         </MainCard>
       </Grid>
       <Grid item xs={12} md={5} lg={4}>
+        {/* Transaction History */}
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid item>
             <Typography variant="h5">Transaction History</Typography>
@@ -209,92 +265,44 @@ const DashboardDefault = () => {
               },
             }}
           >
-            <ListItemButton divider>
-              <ListItemAvatar>
-                <Avatar
-                  sx={{
-                    color: "success.main",
-                    bgcolor: "success.lighter",
-                  }}
-                >
-                  <GiftOutlined />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary={
-                  <Typography variant="subtitle1">Order #002434</Typography>
-                }
-                secondary="Today, 2:00 AM"
-              />
-              <ListItemSecondaryAction>
-                <Stack alignItems="flex-end">
-                  <Typography variant="subtitle1" noWrap>
-                    + $1,430
-                  </Typography>
-                  <Typography variant="h6" color="secondary" noWrap>
-                    78%
-                  </Typography>
-                </Stack>
-              </ListItemSecondaryAction>
-            </ListItemButton>
-            <ListItemButton divider>
-              <ListItemAvatar>
-                <Avatar
-                  sx={{
-                    color: "primary.main",
-                    bgcolor: "primary.lighter",
-                  }}
-                >
-                  <MessageOutlined />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary={
-                  <Typography variant="subtitle1">Order #984947</Typography>
-                }
-                secondary="5 August, 1:45 PM"
-              />
-              <ListItemSecondaryAction>
-                <Stack alignItems="flex-end">
-                  <Typography variant="subtitle1" noWrap>
-                    + $302
-                  </Typography>
-                  <Typography variant="h6" color="secondary" noWrap>
-                    8%
-                  </Typography>
-                </Stack>
-              </ListItemSecondaryAction>
-            </ListItemButton>
-            <ListItemButton>
-              <ListItemAvatar>
-                <Avatar
-                  sx={{
-                    color: "error.main",
-                    bgcolor: "error.lighter",
-                  }}
-                >
-                  <SettingOutlined />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary={
-                  <Typography variant="subtitle1">Order #988784</Typography>
-                }
-                secondary="7 hours ago"
-              />
-              <ListItemSecondaryAction>
-                <Stack alignItems="flex-end">
-                  <Typography variant="subtitle1" noWrap>
-                    + $682
-                  </Typography>
-                  <Typography variant="h6" color="secondary" noWrap>
-                    16%
-                  </Typography>
-                </Stack>
-              </ListItemSecondaryAction>
-            </ListItemButton>
+            {transactions.map((transaction) => (
+              <ListItemButton divider key={transaction.id}>
+                <ListItemAvatar>
+                  <Avatar
+                    sx={{
+                      color: `${transaction.color}.main`,
+                      bgcolor: `${transaction.color}.lighter`,
+                    }}
+                  >
+                    {transaction.color === "success" && <GiftOutlined />}
+                    {transaction.color === "primary" && <MessageOutlined />}
+                    {transaction.color === "error" && <SettingOutlined />}
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary={
+                    <Typography variant="subtitle1">
+                      Order #{transaction.id}
+                    </Typography>
+                  }
+                  secondary={transaction.time}
+                />
+                <ListItemSecondaryAction>
+                  <Stack alignItems="flex-end">
+                    <Typography variant="subtitle1" noWrap>
+                      {transaction.amount}
+                    </Typography>
+                    <Typography variant="h6" color="secondary" noWrap>
+                      {transaction.percentage}
+                    </Typography>
+                  </Stack>
+                </ListItemSecondaryAction>
+              </ListItemButton>
+            ))}
           </List>
         </MainCard>
+
+        {/* Help & Support Chat */}
         <MainCard sx={{ mt: 2 }}>
           <Stack spacing={3}>
             <Grid container justifyContent="space-between" alignItems="center">
@@ -304,7 +312,7 @@ const DashboardDefault = () => {
                     Help & Support Chat
                   </Typography>
                   <Typography variant="caption" color="secondary" noWrap>
-                    Typical replay within 5 min
+                    Typical reply within 5 min
                   </Typography>
                 </Stack>
               </Grid>
