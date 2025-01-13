@@ -110,7 +110,7 @@ const DashboardDefault = () => {
       <Grid item xs={12} sm={6} md={4} lg={3}>
         <AnalyticEcommerce
           title="Total Vehicles Count"
-          count="50,000"
+          count="50,000 vehicles"
           percentage={42.9}
           extra="35,000 vehicles"
         />
@@ -210,7 +210,9 @@ const DashboardDefault = () => {
       <Grid item xs={12} md={7} lg={6}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid item>
-            <Typography variant="h5">Electric Vehicle Population</Typography>
+            <Typography variant="h5">
+              Electric Vehicle Production Year Vise
+            </Typography>
           </Grid>
           <Grid item />
         </Grid>
@@ -221,28 +223,30 @@ const DashboardDefault = () => {
       <Grid item xs={12} md={5} lg={6}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid item>
-            <Typography variant="h5">
-              Top 10 Cities with the Highest Number of EVs
-            </Typography>
+            <Typography variant="h5">Candel Stick Chart Analysis</Typography>
           </Grid>
           <Grid item />
         </Grid>
         <MainCard sx={{ mt: 2 }} content={false}>
-          {/* <ReportAreaChart /> */}
-          {/* <TopCitiesChart /> */}
           <CandlestickChart />
         </MainCard>
       </Grid>
 
       {/* row 5 */}
       <Grid item xs={12} md={7} lg={8}>
+        <Grid container alignItems="center" justifyContent="space-between">
+          <Grid item>
+            <Typography variant="h5">
+              Top Manufacturers by Average Electric Range
+            </Typography>
+          </Grid>
+          <Grid item />
+        </Grid>
         <MainCard sx={{ mt: 1.75 }}>
-          {/* <SalesColumnChart /> */}
           <TopManufacturersChart />
         </MainCard>
       </Grid>
       <Grid item xs={12} md={5} lg={4}>
-        {/* Transaction History */}
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid item>
             <Typography variant="h5">Transaction History</Typography>
@@ -301,7 +305,6 @@ const DashboardDefault = () => {
             ))}
           </List>
         </MainCard>
-
         {/* Help & Support Chat */}
         <MainCard sx={{ mt: 2 }}>
           <Stack spacing={3}>

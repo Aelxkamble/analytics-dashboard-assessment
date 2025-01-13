@@ -20,10 +20,6 @@ const TopManufacturersChart = () => {
         "Jaguar",
       ],
     },
-    title: {
-      text: "Top Manufacturers by Average Electric Range",
-      align: "center",
-    },
   };
 
   const series = [

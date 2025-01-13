@@ -1,17 +1,21 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
+import { Box, Chip, Grid, Stack, Typography } from "@mui/material";
 
-import { Box, Chip, Grid, Stack, Typography } from '@mui/material';
+import MainCard from "components/MainCard";
 
-
-import MainCard from 'components/MainCard';
-
-
-import { RiseOutlined, FallOutlined } from '@ant-design/icons';
+import { RiseOutlined, FallOutlined } from "@ant-design/icons";
 
 // ==============================|| STATISTICS - ECOMMERCE CARD  ||============================== //
 
-const AnalyticEcommerce = ({ color, title, count, percentage, isLoss, extra }) => (
+const AnalyticEcommerce = ({
+  color,
+  title,
+  count,
+  percentage,
+  isLoss,
+  extra,
+}) => (
   <MainCard contentSX={{ p: 2.25 }}>
     <Stack spacing={0.5}>
       <Typography variant="h6" color="textSecondary">
@@ -30,8 +34,16 @@ const AnalyticEcommerce = ({ color, title, count, percentage, isLoss, extra }) =
               color={color}
               icon={
                 <>
-                  {!isLoss && <RiseOutlined style={{ fontSize: '0.75rem', color: 'inherit' }} />}
-                  {isLoss && <FallOutlined style={{ fontSize: '0.75rem', color: 'inherit' }} />}
+                  {!isLoss && (
+                    <RiseOutlined
+                      style={{ fontSize: "0.75rem", color: "inherit" }}
+                    />
+                  )}
+                  {isLoss && (
+                    <FallOutlined
+                      style={{ fontSize: "0.75rem", color: "inherit" }}
+                    />
+                  )}
                 </>
               }
               label={`${percentage}%`}
@@ -43,13 +55,17 @@ const AnalyticEcommerce = ({ color, title, count, percentage, isLoss, extra }) =
       </Grid>
     </Stack>
     <Box sx={{ pt: 2.25 }}>
-      <Typography variant="caption" color="textSecondary">
-        You made an extra{' '}
-        <Typography component="span" variant="caption" sx={{ color: `${color || 'primary'}.main` }}>
+      {/* <Typography variant="caption" color="textSecondary">
+        You made{" "}
+        <Typography
+          component="span"
+          variant="caption"
+          sx={{ color: `${color || "primary"}.main` }}
+        >
           {extra}
-        </Typography>{' '}
+        </Typography>{" "}
         this year
-      </Typography>
+      </Typography> */}
     </Box>
   </MainCard>
 );
@@ -60,11 +76,11 @@ AnalyticEcommerce.propTypes = {
   count: PropTypes.string,
   percentage: PropTypes.number,
   isLoss: PropTypes.bool,
-  extra: PropTypes.oneOfType([PropTypes.node, PropTypes.string])
+  extra: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
 };
 
 AnalyticEcommerce.defaultProps = {
-  color: 'primary'
+  color: "primary",
 };
 
 export default AnalyticEcommerce;

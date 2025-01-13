@@ -5,7 +5,7 @@ import support from "./support";
 import management from "./management";
 
 const menuItems = {
-  items: [dashboard, management, pages, support],
+  items: [dashboard, management, pages, utilities, support],
 };
 
 export default menuItems;
